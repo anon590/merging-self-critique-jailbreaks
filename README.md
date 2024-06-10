@@ -18,6 +18,22 @@ The merged models used in the paper are available in the HuggingFace Hub. They a
 | [Merge-Mixtral-Prometheus-8x7B](https://huggingface.co/vicgalle/Merge-Mixtral-Prometheus-8x7B)  | 8x7B |    [Prometheus-8x7B-v2](https://huggingface.co/prometheus-eval/prometheus-8x7b-v2.0), [Mixtral-8x7B-Instruct](https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1)            |
 
 
+Both models used the linear merge method from [mergekit](https://github.com/arcee-ai/mergekit) with the following config (change models accordingly):
+
+
+```yaml
+models:
+  - model: prometheus-eval/prometheus-8x7b-v2.0
+    parameters:
+      weight: 1.0
+  - model: mistralai/Mixtral-8x7B-Instruct-v0.1
+    parameters:
+      weight: 1.0
+merge_method: linear
+dtype: bfloat16
+```
+
+
 ## Generate responses for adversarial jailbreak attacks
 
 This can be done following the `generate_data.ipynb` notebook. 
